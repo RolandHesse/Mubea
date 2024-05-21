@@ -4,13 +4,69 @@
     padding: 0;
   }
 
-  html {
-    height: 100%;
-}
+  button {
+    border: solid red 1px;
+    width: 1rem;
+    height: 1rem;
+    background: transparent;
+  }
 
-  body {
-    background-image: url('MubeaBackgroundImage.jpg');
-    background-size: cover;
+.image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 75%; /* This will determine the aspect ratio of the image */
+    background-image: url("MubeaBackgroundImage.jpg");
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    } 
+    border: green solid 1px;
+}
+
+.explanation-box {
+    position: absolute;
+}
+
+.explanation-box__heading {
+display: flex;
+}
+
+#aufbau {
+top: 29.5%;    
+left: 39%;
+}
+
+#boden-vorne{
+    top: 55%;    
+left: 23%;
+}
+
+#boden-mitte{
+    top: 51.5%;    
+left: 52%;
+}
+
+#boden-hinten{
+    top: 47%;    
+left: 63%;
+}
+
+#tueren-und-anbauteile{
+    top: 38.5%;    
+left: 65%;
+}
+
+#trb-entwicklung{
+    top: 63%;    
+left: 72%;
+}
+
+#halbzeug{
+    top: 69.5%;    
+left: 72%;
+}
+
+#fertigteile{
+    top: 75.5%;    
+left: 72%;
+}
