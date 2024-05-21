@@ -1,0 +1,16 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    height: 100%;
+}
+
+  body {
+    background-image: url('MubeaBackgroundImage.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    } 
