@@ -5,11 +5,13 @@
   }
 
   button {
-    border: solid red 1px;
-    width: 1rem;
-    height: 1rem;
+    width: 1.4rem;
+    height: 1.4rem;
     background: transparent;
+    border: none;
   }
+
+h3 {}
 
 .image-container {
     position: relative;
@@ -20,53 +22,76 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    border: green solid 1px;
 }
 
 .explanation-box {
     position: absolute;
+    background-color: white;
+    border-radius: 1rem;
+    padding: 0.4rem 1rem;
+    max-width: 25%;
+
+    transition: max-width 5s ease-out;
+  
 }
 
-.explanation-box__heading {
+.explanation-box__header {
 display: flex;
+align-items: center;
+gap: 0.5rem;
+}
+
+.explanation-box__heading {}
+
+.explanation-box__text {
+    margin: 0.5rem; 
+}
+
+@media (max-width: 932px) {
+    .explanation-box__text {
+        position: absolute;
+        right: 0px;
+        height: 100vh;
+        width: 25vw; 
+    }
 }
 
 #aufbau {
-top: 29.5%;    
-left: 39%;
+top: 29%;    
+left: 38%;
 }
 
 #boden-vorne{
-    top: 55%;    
-left: 23%;
+    top: 54.5%;    
+left: 22.5%;
 }
 
 #boden-mitte{
-    top: 51.5%;    
-left: 52%;
+    top: 51%;    
+left: 51%;
 }
 
 #boden-hinten{
-    top: 47%;    
-left: 63%;
+    top: 46%;    
+left: 62%;
 }
 
 #tueren-und-anbauteile{
-    top: 38.5%;    
-left: 65%;
+    top: 38%;    
+left: 64%;
 }
 
 #trb-entwicklung{
-    top: 63%;    
-left: 72%;
+    top: 62.3%;    
+left: 71%;
 }
 
 #halbzeug{
-    top: 69.5%;    
-left: 72%;
+    top: 68.5%;    
+left: 71%;
 }
 
 #fertigteile{
-    top: 75.5%;    
-left: 72%;
+    top: 74.6%;    
+left: 71%;
 }
