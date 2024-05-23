@@ -44,5 +44,11 @@ function createPopUpEventListener() {
     })});
 };
 
+imageContainer.addEventListener("click", (event) => {
+    if (event.target !== event.currentTarget) {
+        
+    }
+})
+
 createCarTagEventListeners();
 createPopUpEventListener();
