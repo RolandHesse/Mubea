@@ -2,12 +2,143 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="./styles.css" />
     <title>Mubea Prototype</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      h3 {
+      }
+
+      .image-container {
+        position: relative;
+      }
+
+      .image {
+        height: 100%;
+        width: 100%;
+      }
+
+      .car-tag-container {
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 1rem;
+        font-size: 0.8rem;
+        max-width: 25%;
+        padding: 0.1rem 0.5rem;
+        position: absolute;
+        transition: max-width 5s ease-out;
+      }
+
+      .car-tag-container__header {
+        align-items: center;
+        cursor: pointer;
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .car-tag-container__button {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        height: 1.2rem;
+        width: 1.2rem;
+      }
+
+      .car-tag-container__heading {
+      }
+
+      .pop-up-container {
+        animation: fade-in 0.5s ease-in;
+        background-color: rgba(255, 255, 255, 0.95);
+        border-radius: 1rem;
+
+        left: 25%;
+        max-width: 50%;
+        padding: 0.4rem 1rem;
+        position: absolute;
+        top: 50%;
+        z-index: 1000;
+      }
+
+      .pop-up-container--hidden {
+        display: none;
+      }
+
+      @keyframes fade-in {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      .pop-up-container__heading {
+      }
+
+      .pop-up-container__text {
+      }
+
+      .pop-up-container__button {
+        cursor: pointer;
+      }
+
+      @media (max-width: 755px) {
+        .pop-up-container {
+          height: 100%;
+          left: 67%;
+          top: 0;
+          width: 33%;
+        }
+      }
+
+      #aufbau {
+        left: 38%;
+        top: 22%;
+      }
+
+      #boden-vorne {
+        left: 22.5%;
+        top: 54.5%;
+      }
+
+      #boden-mitte {
+        left: 51%;
+        top: 50%;
+      }
+
+      #boden-hinten {
+        left: 62%;
+        top: 44%;
+      }
+
+      #tueren-und-anbauteile {
+        left: 64%;
+        top: 34%;
+      }
+
+      #trb-entwicklung {
+        left: 71%;
+        top: 65%;
+      }
+
+      #halbzeug {
+        left: 71%;
+        top: 73%;
+      }
+
+      #fertigteile {
+        left: 71%;
+        top: 82%;
+      }
+    </style>
   </head>
   <body>
     <main>
-      <div class="image-container">
+      <div class="image-container" data-js="./data.js">
         <img
           src="/MubeaBackgroundImage.jpg"
           alt="Exploding car diagramm"
@@ -15,6 +146,77 @@
         />
       </div>
     </main>
-    <script type="module" src="./script.js"></script>
+    <script type="module">
+      import explanationBoxes from "./data.js";
+      const imageContainer = document.querySelector(".image-container");
+
+      function createCarTags(box) {
+        return `
+    <div class="car-tag-container" id="${box.id}">
+        <div class="car-tag-container__header">
+            <button class="car-tag-container__button" >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M11 11V7H13V11H17V13H13V17H11V13H7V11H11ZM12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20Z"></path>
+                </svg>
+            </button>
+            <h3 class="car-tag-container__heading">${box.heading}</h3>
+        </div>
+    </div>
+    <div class="pop-up-container pop-up-container--hidden" >
+        <h3 class="pop-up-container__heading">${box.heading}</h3>
+        <p class="pop-up-container__text">${box.text}</p>
+        <button type="button" class="pop-up-container__button">Close</button>
+    </div>
+`;
+      }
+      explanationBoxes.forEach((box) => {
+        imageContainer.innerHTML += createCarTags(box);
+      });
+
+      const popUpContainers = document.querySelectorAll(".pop-up-container");
+
+      function createCarTagEventListeners() {
+        const carTagHeaders = document.querySelectorAll(
+          ".car-tag-container__header"
+        );
+        carTagHeaders.forEach((header) => {
+          header.addEventListener("click", (event) => {
+            const popUpContainer =
+              event.currentTarget.parentNode.nextElementSibling;
+            if (popUpContainer.classList.contains("pop-up-container--hidden")) {
+              popUpContainers.forEach((popUpContainer) => {
+                popUpContainer.classList.add("pop-up-container--hidden");
+              });
+              popUpContainer.classList.remove("pop-up-container--hidden");
+            } else {
+              popUpContainer.classList.add("pop-up-container--hidden");
+            }
+          });
+        });
+      }
+      createCarTagEventListeners();
+
+      function createPopUpEventListener() {
+        const popUpButtons = document.querySelectorAll(
+          ".pop-up-container__button"
+        );
+        popUpButtons.forEach((button) => {
+          button.addEventListener("click", (event) => {
+            const popUpContainer = event.currentTarget.parentNode;
+            popUpContainer.classList.add("pop-up-container--hidden");
+          });
+        });
+      }
+      createPopUpEventListener();
+
+      const image = document.querySelector(".image");
+      image.addEventListener("click", (event) => {
+        if (event.target === event.currentTarget) {
+          popUpContainers.forEach((popUpContainer) => {
+            popUpContainer.classList.add("pop-up-container--hidden");
+          });
+        }
+      });
+    </script>
   </body>
 </html>
