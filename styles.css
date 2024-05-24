@@ -9,50 +9,65 @@ h3 {
 
 .image-container {
   position: relative;
-  width: 100%;
+}
+
+.image {
   height: 100%;
-  padding-bottom: 75%; /* This will determine the aspect ratio of the image */
-  background-image: url("MubeaBackgroundImage.jpg");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+  width: 100%;
 }
 
 .car-tag-container {
-  position: absolute;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.5);
   border-radius: 1rem;
-  padding: 0.4rem 1rem;
+  font-size: 0.8rem;
   max-width: 25%;
-
+  padding: 0.1rem 0.5rem;
+  position: absolute;
   transition: max-width 5s ease-out;
 }
 
 .car-tag-container__header {
-  display: flex;
   align-items: center;
+  cursor: pointer;
+  display: flex;
   gap: 0.5rem;
 }
 
 .car-tag-container__button {
-  width: 1.4rem;
-  height: 1.4rem;
   background: transparent;
   border: none;
+  cursor: pointer;
+  height: 1.2rem;
+  width: 1.2rem;
 }
 
 .car-tag-container__heading {
 }
 
 .pop-up-container {
-  position: absolute;
-  top: 50%;
+  animation: fade-in 0.5s ease-in;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 1rem;
+
   left: 25%;
   max-width: 50%;
-  border-radius: 1rem;
   padding: 0.4rem 1rem;
-  background-color: white;
+  position: absolute;
+  top: 50%;
   z-index: 1000;
+}
+
+.pop-up-container--hidden {
+  display: none;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .pop-up-container__heading {
@@ -62,57 +77,54 @@ h3 {
 }
 
 .pop-up-container__button {
+  cursor: pointer;
 }
 
-/* @media (max-width: 932px) {
-    .explanation-box__text {
-        position: fixed;
-        right: 0;
-        top: 0;
-        height: 100%;
-        width: 35%; 
-        padding: 0;
-        margin: 0;
-        background-color: hotpink;
-    }
-} */
+@media (max-width: 755px) {
+  .pop-up-container {
+    height: 100%;
+    left: 67%;
+    top: 0;
+    width: 33%;
+  }
+}
 
 #aufbau {
-  top: 29%;
   left: 38%;
+  top: 22%;
 }
 
 #boden-vorne {
-  top: 54.5%;
   left: 22.5%;
+  top: 54.5%;
 }
 
 #boden-mitte {
-  top: 51%;
   left: 51%;
+  top: 50%;
 }
 
 #boden-hinten {
-  top: 46%;
   left: 62%;
+  top: 44%;
 }
 
 #tueren-und-anbauteile {
-  top: 38%;
   left: 64%;
+  top: 34%;
 }
 
 #trb-entwicklung {
-  top: 62.3%;
   left: 71%;
+  top: 65%;
 }
 
 #halbzeug {
-  top: 68.5%;
   left: 71%;
+  top: 73%;
 }
 
 #fertigteile {
-  top: 74.6%;
   left: 71%;
+  top: 82%;
 }
