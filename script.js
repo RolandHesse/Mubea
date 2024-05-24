@@ -2,7 +2,7 @@ import explanationBoxes from "./data.js";
 const imageContainer = document.querySelector(".image-container");
 
 function createCarTags(box) {
-    return `
+  return `
     <div class="car-tag-container" id="${box.id}">
     <div class="car-tag-container__header" id="${box.id}">
         <button class="car-tag-container__button" >
@@ -18,37 +18,48 @@ function createCarTags(box) {
 <p class="pop-up-container__text">${box.text}</p>
 <button type="button" class="pop-up-container__button">Close</button>
 </div>
-`};
-
+`;
+}
 
 explanationBoxes.forEach((box) => {
-imageContainer.innerHTML += createCarTags(box);
+  imageContainer.innerHTML += createCarTags(box);
 });
 
 function createCarTagEventListeners() {
   const carTagButtons = document.querySelectorAll(".car-tag-container__button");
-  
-    carTagButtons.forEach((button) => {button.addEventListener("click", (event) => {
-      const popUpContainer = event.currentTarget.parentNode.parentNode.nextElementSibling;
-      popUpContainer.style.display = popUpContainer.style.display === "none" ? "block" : "none";
-    }
-    )});
+
+  carTagButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      const popUpContainer =
+        event.currentTarget.parentNode.parentNode.nextElementSibling;
+      popUpContainer.style.display =
+        popUpContainer.style.display === "none" ? "block" : "none";
+    });
+  });
 }
 
 function createPopUpEventListener() {
-    const popUpButtons = document.querySelectorAll(".pop-up-container__button");
+  const popUpButtons = document.querySelectorAll(".pop-up-container__button");
 
-    popUpButtons.forEach((button) => {button.addEventListener("click", (event) => {
-        const popUpContainer = event.currentTarget.parentNode;
-        popUpContainer.style.display = popUpContainer.style.display === "none" ? "block" : "none";
-    })});
-};
+  popUpButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      const popUpContainer = event.currentTarget.parentNode;
+      popUpContainer.style.display =
+        popUpContainer.style.display === "none" ? "block" : "none";
+    });
+  });
+}
 
 imageContainer.addEventListener("click", (event) => {
-    if (event.target !== event.currentTarget) {
-        
-    }
-})
+  const popUpContainers = document.querySelectorAll(".pop-up-container");
+
+  if (event.target === event.currentTarget) {
+    console.log("popUpContainers: ", popUpContainers);
+    popUpContainers.forEach((popUpContainer) => {
+      popUpContainer.style.display = "none";
+    });
+  }
+});
 
 createCarTagEventListeners();
 createPopUpEventListener();
